@@ -33,7 +33,8 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         mBinding = FragmentDetailBinding.inflate(layoutInflater, container, false)
 
-        currentMovie = arguments?.getSerializable("movie") as MovieItemModel //узнать
+        currentMovie =
+            arguments?.getSerializable("movie") as MovieItemModel //в переменную записываем получаем из переданного нами бандла данные
         return binding.root
     }
 

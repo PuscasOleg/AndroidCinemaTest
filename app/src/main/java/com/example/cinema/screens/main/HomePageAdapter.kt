@@ -54,16 +54,17 @@ class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomePageViewHolder>
         notifyDataSetChanged()
     }
 
-
+// Элемент будет сейчас виден на экране, пользователь сможет с ним взаимодействовать – хороший момент, чтобы присоединить listener.
+// Помним, что если внутри него нам нужна позиция элемента, то получаем ее через getAdapterPosition.
     override fun onViewAttachedToWindow(holder: HomePageViewHolder) {
         super.onViewAttachedToWindow(holder)
 
         holder.itemView.setOnClickListener {
-            HomePageFragment.clickMovie(movieList[holder.adapterPosition])//узнать
+            HomePageFragment.clickMovie(movieList[holder.adapterPosition]) //инициализируем нажатение на item списка
         }
     }
 
-
+//Элемент не будет отображаться на экране. Пользователь не сможет с ним взаимодействовать. Убираем listener.
     override fun onViewDetachedFromWindow(holder: HomePageViewHolder) {
         super.onViewDetachedFromWindow(holder)
 

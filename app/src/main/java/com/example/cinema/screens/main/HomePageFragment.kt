@@ -74,13 +74,18 @@ class HomePageFragment : Fragment() {
     }
 
 
-    //узнать
-    companion object{
-        fun clickMovie(model:MovieItemModel){
-            val bundle= Bundle() // узнать !!
-
-            bundle.putSerializable("movie",model)
-            MAIN.navController.navigate(R.id.action_homePageFragment_to_detailFragment,bundle)
+    //  обявление обьекта внутри  класса  который позволяет обращаться к  функциям без инициализации доп экземпляра
+    companion object {
+        // метод отвечающий за клик на item списка
+        fun clickMovie(model: MovieItemModel) {
+            val bundle =
+                Bundle() // представляет собой контейнер для  временного храннеия данных разных типов
+            //при нажатии на item  в бандл записываеться вся MovieItemModel со всеми её полями
+            bundle.putSerializable(
+                "movie",
+                model
+            )// преобразование информации в форму которая может быть сохранена или передана.Инфо храниться в формате ключ-значение
+            MAIN.navController.navigate(R.id.action_homePageFragment_to_detailFragment, bundle)//переход на экран detail c бандлом
         }
     }
 

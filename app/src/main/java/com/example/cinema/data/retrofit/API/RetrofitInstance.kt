@@ -6,7 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object RetrofitInstance {
-    //разобрать !!  инициализируем Retrofit
+    //инициализируем Retrofit.
+    // addConverterFactory конвертирует JSON  в необходимый формат
     private val retrofit =
         Retrofit.Builder().baseUrl(BASE_Url).addConverterFactory(GsonConverterFactory.create())
             .build()
