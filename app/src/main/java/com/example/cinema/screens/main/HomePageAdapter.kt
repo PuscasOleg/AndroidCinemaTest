@@ -59,7 +59,7 @@ class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomePageViewHolder>
         super.onViewAttachedToWindow(holder)
 
         holder.itemView.setOnClickListener {
-            HomePageFragment.clickMovie(movieList[holder.adapterPosition])
+            HomePageFragment.clickMovie(movieList[holder.adapterPosition])//узнать
         }
     }
 
