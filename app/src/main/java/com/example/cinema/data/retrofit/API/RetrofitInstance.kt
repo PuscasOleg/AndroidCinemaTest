@@ -6,13 +6,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object RetrofitInstance {
-    //разобрать !!
-    private val retrofit by lazy {
+    //разобрать !!  инициализируем Retrofit
+    private val retrofit =
         Retrofit.Builder().baseUrl(BASE_Url).addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
 
-    val API:ApiService by lazy {
+
+    val API: ApiService =
         retrofit.create(ApiService::class.java)
-    }
+
 }

@@ -12,6 +12,14 @@
         android:layout_height="300dp"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
+    <ImageView
+        android:id="@+id/item_add_favourite"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/imageDetail"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@drawable/ic_baseline_favorite" />
+
     <TextView
         android:id="@+id/movieTitle"
         android:layout_width="wrap_content"
@@ -19,9 +27,9 @@
         android:layout_below="@+id/imageDetail"
         android:layout_centerInParent="true"
         android:layout_marginTop="16dp"
+        android:text="Title"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:text="Title"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/movieDate"
@@ -30,9 +38,10 @@
         android:layout_below="@+id/movieTitle"
         android:layout_centerInParent="true"
         android:layout_marginTop="16dp"
+        android:text="02.02.2022"
         android:textSize="20sp"
-        android:textStyle="italic"
-        android:text="02.02.2022"/>
+        android:textStyle="italic" />
+
     <TextView
         android:id="@+id/movieDesc"
         android:layout_width="wrap_content"
@@ -40,7 +49,7 @@
         android:layout_below="@+id/movieDate"
         android:layout_centerInParent="true"
         android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:text="Description"/>
+        android:text="Description"
+        android:textSize="20sp" />
 
 </RelativeLayout>

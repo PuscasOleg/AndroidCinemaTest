@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cinema.Image_URL
 import com.example.cinema.MAIN
 import com.example.cinema.R
 import com.example.cinema.models.MovieItemModel
@@ -38,12 +39,34 @@ class HomePageAdapter : RecyclerView.Adapter<HomePageAdapter.HomePageViewHolder>
         holder.itemView.item_title.text = movieList[position].title
         holder.itemView.item_date.text = movieList[position].release_date
 
-        Glide.with(MAIN).load(movieList[position].poster_path).centerCrop()
+        Glide.with(MAIN).load( Image_URL+movieList[position].poster_path).centerCrop()
             .placeholder(R.drawable.ic_launcher_foreground).into(holder.itemView.item_img)
     }
 
     // метод для  определения  количества элементов которые надо отобразить
     override fun getItemCount(): Int {
         return movieList.size
+    }
+
+
+    fun setList(list: List<MovieItemModel>) {
+        movieList = list
+        notifyDataSetChanged()
+    }
+
+
+    override fun onViewAttachedToWindow(holder: HomePageViewHolder) {
+        super.onViewAttachedToWindow(holder)
+
+        holder.itemView.setOnClickListener {
+            HomePageFragment.clickMovie(movieList[holder.adapterPosition])
+        }
+    }
+
+
+    override fun onViewDetachedFromWindow(holder: HomePageViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+
+        holder.itemView.setOnClickListener(null)
     }
 }

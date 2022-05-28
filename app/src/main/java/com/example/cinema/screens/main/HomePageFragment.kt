@@ -1,14 +1,15 @@
 package com.example.cinema.screens.main
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cinema.MAIN
 import com.example.cinema.R
 import com.example.cinema.databinding.FragmentHomePageBinding
+import com.example.cinema.models.MovieItemModel
 
 
 class HomePageFragment : Fragment() {
@@ -25,6 +26,7 @@ class HomePageFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentHomePageBinding.inflate(layoutInflater, container, false)
+        setHasOptionsMenu(true)//?
         return binding.root
     }
 
@@ -38,8 +40,13 @@ class HomePageFragment : Fragment() {
 
     private fun init() {
         val viewModel = ViewModelProvider(this).get(HomePageViewModel::class.java) //?
+        viewModel.getMovies()
         recyclerView = binding.recyclerViewMovie
-        recyclerView.adapter = HomePageAdapter()
+        recyclerView.adapter = adapter
+        viewModel.myMovies.observe(viewLifecycleOwner) { list ->
+            adapter.setList(list.body()!!.results)
+
+        }
     }
 
     override fun onDestroy() {
@@ -48,5 +55,33 @@ class HomePageFragment : Fragment() {
         mBinding = null
     }
 
+    //?
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.item_favorite -> {
+                MAIN.navController.navigate(R.id.action_homePageFragment_to_favouriteFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+
+
+    //узнать
+    companion object{
+        fun clickMovie(model:MovieItemModel){
+            val bundle= Bundle() // узнать !!
+
+            bundle.putSerializable("movie",model)
+            MAIN.navController.navigate(R.id.action_homePageFragment_to_detailFragment,bundle)
+        }
+    }
 
 }
